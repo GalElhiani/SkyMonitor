@@ -1,5 +1,5 @@
 /* This program demonstrates how to copy an array to an existing array.
-File: ex1_ws2.c
+File: ex2_ws2.c
 Author: Gal Elhiani
 Tester: Amir Gablinger
 */

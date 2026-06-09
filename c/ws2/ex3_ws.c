@@ -1,3 +1,8 @@
+/* This program prints the addresses of several pointers.
+File: ex3_ws2.c
+Author: Gal Elhiani
+Tester: Amir Gablinger
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
