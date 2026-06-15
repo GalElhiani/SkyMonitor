@@ -1,3 +1,10 @@
+/*This program demonstrates the implementation of stack data structure
+and its functions to manipulate it.
+File: stack.c
+Author: Gal Elhiani
+Tester: Nehorai 
+*/
+
 #include "stack.h"
 #include <stdlib.h>
 #include <string.h>
@@ -6,20 +13,20 @@
 
 struct Stack 
 {
-    void* data;
     size_t element_size;
     size_t size;
     size_t capacity;
-    void* last_element;    
+    void* last_element;
+    char data[1];    
 };
 
 
 Stack* Create(size_t element_size, size_t capacity)
 {
-    Stack* stack = malloc(sizeof(Stack));
+    size_t total_size = sizeof(Stack) + (element_size*capacity);
+    Stack* stack = (Stack*)malloc(total_size);
     assert(stack);
 
-    stack->data = malloc(element_size*capacity);
     if(stack->data == NULL)
     {
         return NULL;
@@ -39,7 +46,6 @@ int IsEmpty(const Stack* stack)
 
 void Destroy(Stack *stack)
 {
-    free(stack->data);
     free(stack);
 }
 
@@ -81,7 +87,7 @@ void Push(Stack* stack, void* element)
 void* Peek(const Stack* stack)
 {
     assert(stack);
-    return (void*)((char*)stack->data +(stack->size*stack->element_size));
+    return (void*)((char*)stack->data +((stack->size-1)*stack->element_size));
 }
 
 size_t Size(const Stack* stack)
@@ -96,3 +102,4 @@ int Capacity(const Stack* stack)
     assert(stack);
     return stack->capacity;
 }
+
