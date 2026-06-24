@@ -1,5 +1,6 @@
 /*******************************************************************/
-ex1:
+ex1: Use journalctl to show every boot your system has ever made.
+Show the full information from one of the boots.
 
 use the command
 journalctl --list--boots
@@ -11,7 +12,7 @@ instance of one boot:
 
 /*******************************************************************/
 
-ex2:
+ex2: Show all logs written from the beginning of the day until now.
 
 use the command journalctl -S today
 
@@ -21,7 +22,7 @@ i saved the logs in a file called ex2_logs.md
 
 /*******************************************************************/
 
-ex3:
+ex3: Pick a process and show all logs written by it.
 
 use the command:
 journalctl _PID={pid}
@@ -34,13 +35,13 @@ i saved the logs in a file called ex3_logs.md
 
 /*******************************************************************/
 
-ex4:
+ex4: Write a Bash script that logs every successful run to the /var/log/syslog file.
 
 answer is in ex4.sh
 
 /*******************************************************************/
 
-ex5:
+ex5: Edit your Bash script from the previous exercise to have bad syntax. Use strace to find the exact time of the error.
 
 ex5.sh purposely broken file (syntax error)
 
@@ -51,13 +52,16 @@ NULL, 8) = 0
 
 /*******************************************************************/
 
-ex6:
+ex6: Use nmon to observe the top processes and CPU usage.
 run nmon command in bash and then press c for cpu
 
 
 /*******************************************************************/
 
-ex7:
+ex7: Open a different terminal and run the following command: for i in 1 2 3 4; do while :
+do :; done & done.
+Explain what you see in the nmon terminal.
+Fix it.
 
 we see that the code creates an infinite loop running on the background.
 
@@ -65,7 +69,7 @@ in order to fix it we can need to first terminate the background looping process
 
 /*******************************************************************/
 
-ex8:
+ex8: Do the last exercise again using gnome-system-monitor.
 
 running gnome-system-monitor
 then run the code that was provided in the exercise in a different terminal
