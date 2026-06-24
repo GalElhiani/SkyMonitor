@@ -1,4 +1,5 @@
 /*******************************************************************/
+
 ex1: Use journalctl to show every boot your system has ever made.
 Show the full information from one of the boots.
 

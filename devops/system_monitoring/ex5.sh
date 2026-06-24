@@ -1,5 +1,9 @@
 #!/bin/bash
+#this script generates a random number from 1-10 and succeeds if the number is greater than 10
+#but is purposely made with bad syntax
 
+#Tested by: Amir malul
+#Authored by: Gal Elhiani
 num=$(( (RANDOM % 10) + 1 ))
 
 if  "$num" -gt 5 ]; then
