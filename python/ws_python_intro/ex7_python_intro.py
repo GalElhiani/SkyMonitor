@@ -6,8 +6,8 @@
 def MoneyToCurrency(num):
     '''calculates how many bills in index i can fit inside our number'''
 
-    bills = [200,100,50,20,10,5,2,1]
-    amount_of_bills = [0,0,0,0,0,0,0,0]
+    bills = [200, 100, 50, 20, 10, 5, 2, 1]
+    amount_of_bills = [0, 0, 0, 0, 0, 0, 0, 0]
     for i in range(len(bills)):
         amount_of_bills[i] = num // bills[i]                            
         num %= bills[i]

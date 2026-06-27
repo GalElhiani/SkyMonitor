@@ -10,7 +10,7 @@ def CharCount(ch, str):
     count = 0
     for i ,c in enumerate(str):
         if(str[i] == ch):
-            count+=1
+            count += 1
 
     return count
 

@@ -11,7 +11,7 @@ def SumOfDivisors(num):
         return 0
     
     result = 0
-    for i in range(1 , num+1):
+    for i in range(1 , num + 1):
         if num % i == 0:
             result += i
     return result 
@@ -22,7 +22,7 @@ def SumOfDivisors(num):
 
 
 num1 = -100
-num2  = 150
+num2 = 150
 num3 = 12
 num4 = 7
 

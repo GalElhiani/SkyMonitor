@@ -10,7 +10,7 @@ def IsPrime(num):
     while i*i <= num:            # the biggest sum a number can be divided to is its square root (to get an int)
         if num % i == 0:
             return False
-        i+=1
+        i += 1
     return True
         
 
