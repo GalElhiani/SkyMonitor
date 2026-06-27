@@ -7,7 +7,7 @@ def IsPrime(num):
     if num < 2:                 # 1,2 are prime numbers and cant be included
         return False
     i = 2
-    while i*i < num:            # the biggest sum a number can be divided to is its square root
+    while i*i <= num:            # the biggest sum a number can be divided to is its square root (to get an int)
         if num % i == 0:
             return False
         i+=1
