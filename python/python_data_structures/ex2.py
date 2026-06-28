@@ -1,8 +1,9 @@
-#this program demonstrates how a function that receives a str and returns a dict containing each letter and its occurrence
+#this program demonstrates how a function that receives a str 
+#and returns a dict containing each letter and its occurrence
 #Author: Gal Elhiani
 #Tester: Tomer
 
-def StrToDictB(string):
+def str_to_dict(string):
     '''a function that receives a str and returns a dict containing each letter and its occurrence.'''
     dictionary = {}
     for i, ch in enumerate(string):
@@ -12,5 +13,6 @@ def StrToDictB(string):
 
 
 
+
 strong = "testing string"
-print(StrToDictB(strong))
+print(str_to_dict(strong))

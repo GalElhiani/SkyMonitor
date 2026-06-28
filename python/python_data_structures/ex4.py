@@ -1,8 +1,9 @@
-#this program demonstrates a function that receives a dictionary and returns list with all unique values in a given dictionary.
+#this program demonstrates a function that receives a dictionary 
+#and returns list with all unique values in a given dictionary.
 #Author: Gal Elhiani
 #Tester: Tomer
 
-def UniqueVals(dictionary):
+def unique_vals(dictionary):
     '''a function that receives a dictionary and returns list with all unique values in a given dictionary'''
     lst = set(dictionary.values())
     return list(lst)
@@ -20,6 +21,4 @@ simple_dict = {
     9: "i",
     10: "j"
 }
-
-print(UniqueVals(simple_dict))
-    
+print(unique_vals(simple_dict))

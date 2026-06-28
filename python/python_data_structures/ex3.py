@@ -2,7 +2,7 @@
 #Author: Gal Elhiani
 #Tester: Tomer
 
-def ListIntersection(list1, list2):
+def list_intersection(list1, list2):
     '''function that receives 2 list s and returns a list containing only the elements that are in both lists'''
     new_set = {}
     new_set = set(list1) & set(list2)
@@ -12,4 +12,4 @@ def ListIntersection(list1, list2):
 lst1 = [1, 2, 3, 4, 5]
 lst2 = [5, 6, 7, 8, 9]
 
-print(ListIntersection(lst1, lst2))
+print(list_intersection(lst1, lst2))
