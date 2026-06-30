@@ -19,7 +19,7 @@ def sale_discount(target_dict):
     '''a function that receives a dictionary with names of products and their prices and returns
     the dictionary with a 10% sale price.'''
     for key in target_dict.keys():
-        target_dict[key]*=1.1
+        target_dict[key]*=0.9
     return target_dict
 
 
