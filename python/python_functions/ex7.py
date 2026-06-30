@@ -1,6 +1,11 @@
+#Luhn algorithm for the validation of credit card numbers
+#Author: Gal Elhiani
+#Tester: Or Mano
+
 from functools import reduce
 
 def luhn_algorithm(string):
+    '''#a function that implements Luhn algorithm for the validation of credit card numbers'''
     lst = [int(ch) for ch in string]
     lst.reverse()
     lst = [num * 2 if index % 2 != 0 else num for index, num in enumerate(lst)]
@@ -10,8 +15,8 @@ def luhn_algorithm(string):
         return True
     return False
 
-string = "12345"
-string2 = "4242424242424242"
+string = "12345"              #not valid number should return false
+string2 = "4242424242424242"  #valid number should return true
 
 print(luhn_algorithm(string))
 print(luhn_algorithm(string2))
