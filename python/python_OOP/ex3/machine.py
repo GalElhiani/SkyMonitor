@@ -16,6 +16,9 @@ class Machine:
         self.stop_time = None
 
         Machine.tracking_table.append(self)
+    
+    def __repr__(self):
+         return f"Machine: {self.name}, {self.type}"
 
 
     def start_machine(self, current_time=None):
