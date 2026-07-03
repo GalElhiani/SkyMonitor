@@ -1,4 +1,4 @@
-#This module is the implementation of a linked list, and a single node
+#This module is the implementation of a linked list
 #Author: Gal ELhiani
 #Tester: Meytar
 
@@ -10,7 +10,7 @@ class Node:
         self.next = next
     
     def __str__(self):
-        '''a function to print the node'''
+        '''a method to print the node'''
         return str(self.val)
 
 
@@ -29,13 +29,13 @@ class LinkedList:
             self.count += 1
 
     def is_empty(self):
-        """a function that checks if the linked list is empty."""
+        """a method that checks if the linked list is empty."""
         if self.head == None:
             return True
         return False
 
     def push(self, value):
-        """a function that appends a new node containing 'value' to the back of the list."""
+        """a method that appends a new node containing 'value' to the back of the list."""
         new_node = Node(value, None)
         if self.is_empty():
             self.head = new_node
@@ -46,7 +46,7 @@ class LinkedList:
         self.count += 1 
 
     def pop(self):
-        """a function that removes and returns the node at the front of the list."""
+        """a method that removes and returns the node at the front of the list."""
         if self.is_empty():
             return None
 
@@ -60,16 +60,17 @@ class LinkedList:
         return temp
     
     def get_head(self):
-        """a function that returns the front node of the list."""
+        """a method that returns the front node of the list."""
         if self.is_empty():
             return None
         return self.head
     
     def get_len(self):
-        """a function thatreturns the current number of nodes in the list"""
+        """a method thatreturns the current number of nodes in the list"""
         return self.count
     
     def __str__(self):
+        '''a dunder to make the list printable as string'''
         if self.is_empty():
             return "Empty"
         
