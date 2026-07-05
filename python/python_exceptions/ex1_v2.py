@@ -4,14 +4,16 @@
 #it must contain at least one upper case letter
 #it must contain at least one lowercase letter
 #it must contain at least one of the following symbols: @, #, %, &
-#it will throw a value error for each rule broken
+#it will throw a custom exception for each rule broken
 #Author: Gal Elhiani
 #Tester: Meytar
+
+import PassException
 
 def IsStrongPass(string):
     '''this function checks password strength as explained in the comments above'''
     if len(string) < 8:
-        raise ValueError("the password must contain at least 8 characters!")
+        raise PassException.LengthError("the password must contain at least 8 characters!")
 
     contains_upper = False
     contains_lower = False
@@ -30,13 +32,13 @@ def IsStrongPass(string):
             contains_digit = True
 
     if not contains_lower:
-        raise ValueError("the password must contain at least one lower case letter!")
+        raise PassException.LowerCaseError("the password must contain at least one lower case letter!")
     if not contains_upper:
-        raise ValueError("the password must contain at least one upper case letter!")
+        raise PassException.UpperCaseError("the password must contain at least one upper case letter!")
     if not contains_digit:
-        raise ValueError("the password must contain at least one digit!")
+        raise PassException.DigitsError("the password must contain at least one digit!")
     if not contains_special:
-        raise ValueError(f"the password must contain one of those special characters: {special_char}")
+        raise PassException.SpecialCharError(f"the password must contain one of those special characters: {special_char}")
     # if not (contains_lower and contains_upper and contains_digit and contains_special):
     #     print("Password is invalid!")
     #     print("Your password must contain at least one upper case, one lower case, and a special character!")
@@ -46,9 +48,8 @@ def IsStrongPass(string):
     return True
 
 
-
-# invalid_password = "12345678"
+invalid_password = "12345678"
 valid_password = "123@Abp12"
 
-# IsStrongPass(invalid_password)
+IsStrongPass(invalid_password)
 IsStrongPass(valid_password)
