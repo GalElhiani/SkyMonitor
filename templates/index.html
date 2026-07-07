@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyMonitor</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>SkyMonitor</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Main Heading</h2>
+            <p>Please input a city or a country.</p>
+        </section>
+
+        {% if error %}
+        <div class="error-banner">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>{{ error }}</span>
+        </div>
+        {% endif %}
+
+        <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search for a city or country...">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if city %}
+            <h2>7-Day Weather Forecast for {{ city }}, {{ country }}</h2>
+
+            <table border="1" cellpadding="10" style="border-collapse: collapse; text-align: center;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th>Date</th>
+                        <th>Day Temp (°C)</th>
+                        <th>Night Temp (°C)</th>
+                        <th>Avg Humidity (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(7) %}
+                    <tr>
+                        <td><strong>{{ dates[i] }}</strong></td>
+                        <td style="color: #d9534f;">{{ day_temps[i] }}°C</td>
+                        <td style="color: #0275d8;">{{ night_temps[i] }}°C</td>
+                        <td>{{ humidity[i] }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
