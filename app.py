@@ -1,12 +1,17 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, request
 import requests
 import pycountry
 from countryinfo import CountryInfo
 from datetime import datetime
 
+
 app = Flask(__name__)
 
-API_KEY = "9bf4d1b1473854d8fafc03f85821115c"
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+print(f"\n--- DEBUG: KEY LOADED IS: {API_KEY} ---\n")
 
 GEO_CODER_URL = f"http://api.openweathermap.org/geo/1.0/direct"
 FORECAST_URL = "https://api.open-meteo.com/v1/forecast?daily=sunrise,sunset&hourly=temperature_2m,relative_humidity_2m&timezone=auto&forecast_days=7"
