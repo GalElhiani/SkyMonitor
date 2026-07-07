@@ -5,7 +5,7 @@ from countryinfo import CountryInfo
 from datetime import datetime
 
 app = Flask(__name__)
-
+#testing github and git
 API_KEY = "9bf4d1b1473854d8fafc03f85821115c"
 
 GEO_CODER_URL = f"http://api.openweathermap.org/geo/1.0/direct"
