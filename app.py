@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import pycountry
 from countryinfo import CountryInfo
@@ -68,6 +68,7 @@ def get_day_night_temp(weather_data):
             night_avg.append(0.0)
     
     return day_avg, night_avg
+
 
 @app.route("/")
 def index():
@@ -137,7 +138,10 @@ def result():
 
     else:
         return render_template("index.html", error="Location is either invalid, or there is a typo!")
-
+    
+@app.errorhandler(404)
+def handle_invalid_urls(e):
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

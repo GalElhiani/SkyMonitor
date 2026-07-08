@@ -135,7 +135,7 @@
     <div class="container d-flex justify-content-center my-5">
         <div class="card shadow-sm border-0 p-4" style="width: 425px; background: #fff;">
             <h2>{{ city }}</h2>
-            <h3>Avg Humidity<span>Humidity {{ humidity[0] }}% <span class="dot">•</span> {{ country }}</span></h3>
+            <h3>The Following Week's Forecast<span> <span class="dot">•</span> {{ country }}</span></h3>
             <h1>{{ day_temps[0] | round | int }}°</h1>
             
             <div class="sky">
@@ -172,6 +172,14 @@
                         
                         {% for i in range(7) %}
                             <td>{{ night_temps[i] | round | int }}°</td>
+                        {% endfor %}
+                    </tr>
+
+                    <tr class="text-muted small">
+                        <td class="text-uppercase text-secondary text-start small fw-normal border-0 border-end" style="font-size: 0.75rem; letter-spacing: 0.5px;">Humidity%</td>
+                        
+                        {% for i in range(7) %}
+                            <td>{{ humidity[i] | round | int }}%</td>
                         {% endfor %}
                     </tr>
                 </tbody>
