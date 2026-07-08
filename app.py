@@ -11,7 +11,6 @@ app = Flask(__name__)
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
-print(f"\n--- DEBUG: KEY LOADED IS: {API_KEY} ---\n")
 
 GEO_CODER_URL = f"http://api.openweathermap.org/geo/1.0/direct"
 FORECAST_URL = "https://api.open-meteo.com/v1/forecast?daily=sunrise,sunset&hourly=temperature_2m,relative_humidity_2m&timezone=auto&forecast_days=7"
@@ -86,6 +85,9 @@ def result():
 
     if not user_query:
         return "please enter a search term!", 400
+    
+    if any(char.isdigit() for char in user_query):
+        return render_template("index.html", error="Location is either invalid, or there is a typo!")
     
     try:
         country_lookup = CountryInfo(user_query)
