@@ -1,17 +1,18 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for
+import geonamescache
 import requests
 import pycountry
 from countryinfo import CountryInfo
 from datetime import datetime
+from autocomplete import get_locations
 
 
 app = Flask(__name__)
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
-
 GEO_CODER_URL = f"http://api.openweathermap.org/geo/1.0/direct"
 FORECAST_URL = "https://api.open-meteo.com/v1/forecast?daily=sunrise,sunset&hourly=temperature_2m,relative_humidity_2m&timezone=auto&forecast_days=7"
 
@@ -72,19 +73,24 @@ def get_day_night_temp(weather_data):
 
 @app.route("/")
 def index():
-    return render_template("index.html", title="Home")
+    return render_template("index.html", title="Home", countries_list=get_locations())
 
 #translate city name to longitute and latitude coordinates
 @app.route("/search", methods=['GET'])
 def result():
     user_query = request.args.get('q')
+    all_countries = get_locations()
 
     if not user_query:
         return "please enter a search term!", 400
     
+    if user_query not in all_countries:
+        return render_template("index.html", error="Please choose a valid location from the suggestion list!", countries_list=all_countries)
+        
     if any(char.isdigit() for char in user_query):
-        return render_template("index.html", error="Location is either invalid, or there is a typo!")
+        return render_template("index.html", error="Location is either invalid, or there is a typo!", countries_list=all_countries)
     
+    city_only = user_query.split(",")[0].strip()        #incase the user inputs a city only
     try:
         country_lookup = CountryInfo(user_query)
         capital_city = country_lookup.capital()
@@ -95,7 +101,7 @@ def result():
     geo_coder_query_params = {
         "q": search_query,
         "appid": API_KEY,
-        "limit": 1
+        #"limit": 1
     }
     response_geo_coder = requests.get(GEO_CODER_URL, params=geo_coder_query_params)
     geo_data = response_geo_coder.json()
@@ -124,7 +130,7 @@ def result():
         day_temps_list, night_temps_list = get_day_night_temp(weather_data)
         date_list = weather_data["daily"]["time"]
 
-    
+
         return render_template(
             "index.html",
             city=display_city,
@@ -132,12 +138,13 @@ def result():
             dates=date_list,
             day_temps=day_temps_list,    
             night_temps=night_temps_list, 
-            humidity=humidity_list       
+            humidity=humidity_list,
+            countries_list=all_countries
         )
 
 
     else:
-        return render_template("index.html", error="Location is either invalid, or there is a typo!")
+        return render_template("index.html", error="Location is either invalid, or there is a typo!", countries_list=get_locations())
     
 @app.errorhandler(404)
 def handle_invalid_urls(e):
