@@ -147,24 +147,36 @@
                 </div>
             </div>
             
-            <table class="table table-borderless text-center m-0 mt-3">
-                
-                <tr>
-                    {% for i in range(7) %}
-                        <td>{{ dates[i] }}</td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    {% for i in range(7) %}
-                        <td>{{ day_temps[i] | round | int }}°</td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    {% for i in range(7) %}
-                        <td class="text-muted" style="font-size: 0.9em;">{{ night_temps[i] | round | int }}°</td>
-                    {% endfor %}
-                </tr>
+
+            <table class="table table-bordered border-light-subtle text-center m-0 mt-3 align-middle" style="table-layout: fixed; width: 100%;">
+                <thead>
+                    <tr class="text-uppercase text-secondary small">
+                        <th class="bg-transparent border-0" style="width: 55px;"></th> 
+                        
+                        {% for i in range(7) %}
+                            <th class="fw-normal bg-transparent text-secondary border-bottom border-top-0">{{ dates[i][5:] }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="fw-semibold text-dark">
+                        <td class="text-uppercase text-secondary text-start small fw-normal border-0 border-end" style="font-size: 0.75rem; letter-spacing: 0.5px;">Day</td>
+                        
+                        {% for i in range(7) %}
+                            <td>{{ day_temps[i] | round | int }}°</td>
+                        {% endfor %}
+                    </tr>
+                    
+                    <tr class="text-muted small">
+                        <td class="text-uppercase text-secondary text-start small fw-normal border-0 border-end" style="font-size: 0.75rem; letter-spacing: 0.5px;">Night</td>
+                        
+                        {% for i in range(7) %}
+                            <td>{{ night_temps[i] | round | int }}°</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
             </table>
+            
 
         </div>
     </div>
@@ -173,3 +185,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+
+

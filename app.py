@@ -25,11 +25,6 @@ def get_humidity_avg(weather_data):
     
     return daily_humidity
 
-# def get_day_temp(weather_data):
-#     return weather_data["daily"]["temperature_2m_max"]
-
-# def get_night_temp(weather_data):
-#     return weather_data["daily"]["temperature_2m_min"]
 
 def get_day_night_temp(weather_data):
     hourly_times = weather_data["hourly"]["time"]
