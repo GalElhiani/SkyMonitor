@@ -195,17 +195,12 @@
     {% endif %}
 
     <script>
-      $( function() {
-        var tagsList = [
-            {% for item in countries_list %}
-                "{{ item | safe }}",
-            {% endfor %}
-        ];
-        
+    $( function() {
         $( "#autocomplete-tags" ).autocomplete({
-          source: tagsList
+        source: "/api/autocomplete", // pull data dynamically from Flask
+        minLength: 2                 // wait until user types 2 letters to trigger search
         });
-      } );
+    } );
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
