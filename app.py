@@ -101,8 +101,6 @@ def result():
         "q": search_query,
         "appid": API_KEY,
     }
-    # response_geo_coder = requests.get(GEO_CODER_URL, params=geo_coder_query_params)
-    # geo_data = response_geo_coder.json()
 
     try:
         response_geo_coder = requests.get(GEO_CODER_URL, params=geo_coder_query_params, timeout=10)
@@ -122,9 +120,6 @@ def result():
             full_country_name = pycountry.countries.get(alpha_2=raw_country).name
         except AttributeError:
             full_country_name = raw_country
-
-        # response_open_weather = requests.get(FORECAST_URL, params={"latitude": latitude, "longitude" : longitude})
-        # weather_data = response_open_weather.json()
 
         try:
             response_open_weather = requests.get(
