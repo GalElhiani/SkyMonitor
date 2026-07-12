@@ -8,7 +8,7 @@
 !bash/**
 !python/**
 !devops/**
-
+!SkyMonitor/**
 # SkyMonitor-specific ignores
 **/.venv/
 **/.pytest_cache/
