@@ -1,9 +1,13 @@
+#ignore all
+*
 **/__pycache__/
+!/*
+
+#exclude
+!SkyMonitor/**
 **/.venv/
 **/.pytest_cache/
 **/venv/
-
-# Ignore local configuration or key files 
 .env
 config.json
 weather_output.json

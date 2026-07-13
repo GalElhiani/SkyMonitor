@@ -35,7 +35,7 @@ def search_locations(query, limit=10):
     query = query.lower()
     matches = []
     for loc in ALL_LOCATIONS:
-        if query in loc.lower():
+        if loc.lower().startswith(query):
             matches.append(loc)
             if len(matches) >= limit:  # Break early to keep it blazing fast
                 break

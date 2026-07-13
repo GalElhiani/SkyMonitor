@@ -101,7 +101,13 @@ def result():
         "q": search_query,
         "appid": API_KEY,
     }
-    response_geo_coder = requests.get(GEO_CODER_URL, params=geo_coder_query_params)
+
+    try:
+        response_geo_coder = requests.get(GEO_CODER_URL, params=geo_coder_query_params, timeout=10)
+        response_geo_coder.raise_for_status()
+    except requests.exceptions.RequestException:
+        return render_template("index.html", error="Weather service is currently unavailable!")
+
     geo_data = response_geo_coder.json()
 
     if geo_data:
@@ -115,9 +121,18 @@ def result():
         except AttributeError:
             full_country_name = raw_country
 
-        response_open_weather = requests.get(FORECAST_URL, params={"latitude": latitude, "longitude" : longitude})
+        try:
+            response_open_weather = requests.get(
+                FORECAST_URL,
+                params={"latitude": latitude, "longitude": longitude},
+                timeout=10
+            )
+            response_open_weather.raise_for_status()
+        except requests.exceptions.RequestException:
+            return render_template("index.html", error="Weather service is currently unavailable!")
 
         weather_data = response_open_weather.json()
+
         humidity_list = get_humidity_avg(weather_data)
         day_temps_list, night_temps_list = get_day_night_temp(weather_data)
         date_list = weather_data["daily"]["time"]
